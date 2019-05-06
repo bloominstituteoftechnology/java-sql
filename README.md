@@ -1,3 +1,10 @@
+# java-sql
+
+A student that completes this project shows that they can:
+* Query data from a single table
+* Query data from multiple tables
+* Create a new datadaase using PostgreSQL
+
 # Introduction
 
 Working with SQL
@@ -57,7 +64,7 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 
 ### Keep track of the code you write and paste at the end of this document
 
-- use [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) to create a database, name it `budget.sqlite3`.
+- use pgAdmin to create a database, naming it `budget`.
 - add an `accounts` table with the following _schema_:
 
   - `id`, numeric value with no decimal places that should autoincrement.
@@ -68,4 +75,3 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
   - the `id` should be the primary key for the table.
   - account `name` should be unique.
   - account `budget` is required.
-> This can be done with the CREATE TABLE clause
