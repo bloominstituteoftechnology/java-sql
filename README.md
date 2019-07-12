@@ -11,10 +11,28 @@ Working with SQL
 
 # Instructions
 
-Surf to [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top)  
+Import the W3School Tutorial database into PostgreSQL using pgAdmin
+
+clone https://github.com/AndrejPHP/w3schools-database.git
+
+## pgAdmin
+
+* Right Click Databases
+  * Create
+    * type in w3school
+
+* Tools -> Query Tool
+  * Open file w3schools.sql (from cloned repo)
+  * Execute
+
+* Look under
+  * w3schools -> Schemas -> public -> tables
+
+* Clear query windows
+
 Answer the following data queries. Keep track of the SQL you write by pasting it into this document under its appropriate header below. You will be submitting that through the regular fork, change, pull process.
 
-### **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
+
 
 ### find all customers that live in London. Returns 6 records.
 > This can be done with SELECT and WHERE clauses
@@ -53,6 +71,20 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 ### list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 > This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
 
+
+## Data Normalization
+
+Note: This step does not use PostgreSQL!
+
+Take the following data and normalize it into a 3NF database.
+
+| Person Name | Pet Name | Pet Type | Pet Name 2 | Pet Type 2 | Pet Name 3 | Pet Type 3 | Fenced Yard | City Dweller |
+|-------------|----------|----------|------------|------------|------------|------------|-------------|--------------|
+| Jane        | Ellie    | Dog      | Tiger      | Cat        | Toby       | Turtle     | No          | Yes          |
+| Bob         | Joe      | Horse    |            |            |            |            | No          | No           |
+| Sam         | Ginger   | Dog      | Miss Kitty | Cat        | Bubble     | Fish       | Yes         | No           |
+
+---
 ## Stretch Goals
 
 ### delete all customers that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
