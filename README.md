@@ -11,27 +11,11 @@ Working with SQL
 
 # Instructions
 
-Import the W3School Tutorial database into PostgreSQL using pgAdmin
+Surf to [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top)  
 
-clone https://github.com/AndrejPHP/w3schools-database.git
-
-## pgAdmin
-
-* Right Click Databases
-  * Create
-    * type in w3school
-
-* Tools -> Query Tool
-  * Open file w3schools.sql (from cloned repo)
-  * Execute
-
-* Look under
-  * w3schools -> Schemas -> public -> tables
-
-* Clear query windows
+### **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
 Answer the following data queries. Keep track of the SQL you write by pasting it into this document under its appropriate header below. You will be submitting that through the regular fork, change, pull process.
-
 
 
 ### find all customers that live in London. Returns 6 records.
