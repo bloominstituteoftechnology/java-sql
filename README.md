@@ -62,13 +62,13 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 
 
 ### add a customer record for   
-### customer id is 'SHIRE'
-### company name is 'The Shire'
-### contact name is 'Bilbo Baggins'
-### the address is '1 Hobbit-Hole'
-### ths city is 'Bag End'
-### the postal code is '111'
-### the country is 'Middle Earth'
+* customer id is 'SHIRE'
+* company name is 'The Shire'
+* contact name is 'Bilbo Baggins'
+* the address is '1 Hobbit-Hole'
+* ths city is 'Bag End'
+* the postal code is '111'
+* the country is 'Middle Earth'
 > This can be done with the INSERT INTO clause
 
 
