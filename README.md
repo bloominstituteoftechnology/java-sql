@@ -86,7 +86,7 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 > This can be done by adding an ORDER BY clause to the previous answer
 
 
-### list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders.
+### list orders grouped by customer's city showing number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders.
 > This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
 
 
