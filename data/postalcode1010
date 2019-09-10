@@ -1,0 +1,4 @@
+"customer_id","company_name","contact_name","contact_title","address","city","region","postal_code","country","phone","fax"
+"CACTU","Cactus Comidas para llevar","Patricio Simpson","Sales Agent","Cerrito 333","Buenos Aires",NULL,"1010","Argentina","(1) 135-5555","(1) 135-4892"
+"OCEAN","Océano Atlántico Ltda.","Yvonne Moncada","Sales Agent","Ing. Gustavo Moncada 8585 Piso 20-A","Buenos Aires",NULL,"1010","Argentina","(1) 135-5333","(1) 135-5535"
+"RANCH","Rancho grande","Sergio Gutiérrez","Sales Representative","Av. del Libertador 900","Buenos Aires",NULL,"1010","Argentina","(1) 123-5555","(1) 123-5556"
