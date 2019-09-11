@@ -35,23 +35,23 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 
 ### find all customers that live in London. Returns 6 records.
 > This can be done with SELECT and WHERE clauses
-
+"customer_id","company_name","contact_name","contact_title","address","city","region","postal_code","country","phone","fax" "AROUT","Around the Horn","Thomas Hardy","Sales Representative","120 Hanover Sq.","London",NULL,"WA1 1DP","UK","(171) 555-7788","(171) 555-6750" "BSBEV","B's Beverages","Victoria Ashworth","Sales Representative","Fauntleroy Circus","London",NULL,"EC2 5NT","UK","(171) 555-1212",NULL "CONSH","Consolidated Holdings","Elizabeth Brown","Sales Representative","Berkeley Gardens 12 Brewery","London",NULL,"WX1 6LT","UK","(171) 555-2282","(171) 555-9199" "EASTC","Eastern Connection","Ann Devon","Sales Agent","35 King George","London",NULL,"WX3 6FW","UK","(171) 555-0297","(171) 555-3373" "NORTS","North/South","Simon Crowther","Sales Associate","South House 300 Queensbridge","London",NULL,"SW7 1RZ","UK","(171) 555-7733","(171) 555-2530" "SEVES","Seven Seas Imports","Hari Kumar","Sales Manager","90 Wadhurst Rd.","London",NULL,"OX15 4NB","UK","(171) 555-1717","(171) 555-5646"
 
 ### find all customers with postal code 1010. Returns 3 customers.
 > This can be done with SELECT and WHERE clauses
-
+SELECT * FROM Customers WHERE Postal_Code = '1010';
 
 ### find the phone number for the supplier with the id 11. Should be (010) 9984510.
 > This can be done with SELECT and WHERE clauses
-
+SELECT Phone FROM Suppliers WHERE Supplier_Id = 11;
 
 ### list orders descending by the order date. The order with date 1998-05-06 should be at the top.
 > This can be done with SELECT, WHERE, and ORDER BY clauses
-
+SELECT * FROM Orders ORDER BY Order_Date DESC;
 
 ### find all suppliers who have names longer than 20 characters. You can use `length(company_name)` to get the length of the name. Returns 11 records.
 > This can be done with SELECT and WHERE clauses
-
+SELECT supplier_id, company_name, city from suppliers where length(company_name) > 20
 
 ### find all customers that include the word 'MARKET' in the contact title. Should return 19 records.
 > This can be done with SELECT and a WHERE clause using the LIKE keyword
@@ -59,7 +59,7 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 > Don't forget the wildcard '%' symbols at the beginning and end of your substring to denote it can appear anywhere in the string in question
 
 > Remember to convert your contact title to all upper case for case insenstive comparing so upper(contact_title)
-
+SELECT * from customers where upper(contact_title) like '%MARKET%';
 
 ### add a customer record for   
 * customer id is 'SHIRE'
@@ -70,25 +70,25 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 * the postal code is '111'
 * the country is 'Middle Earth'
 > This can be done with the INSERT INTO clause
+insert into customers(customer_id, company_name, contact_name, address, city, postal_code, country) values('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth');
 
 
 ### update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 > This can be done with UPDATE and WHERE clauses
-
-
+update customers set postal_code = '11122' where customer_id = 'SHIRE'
 ### list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 18 orders.
 > This can be done with SELECT, COUNT, JOIN and GROUP BY clauses. Your count should focus on a field in the Orders table, not the Customer table
 
 > There is more information about the COUNT clause on [W3 Schools](https://www.w3schools.com/sql/sql_count_avg_sum.asp)
-
+SELECT count(o.order_id), c.contact_name, c.company_name from orders o join customers c on o.customer_id = c.customer_id group by c.contact_name, c.company_name order by count(o.order_id)
 
 ### list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Save-a-lot Markets should be at the top with 31 orders followed by _Ernst Handle_ with 30 orders. Last should be _Centro comercial Moctezuma_ with 1 order.
 > This can be done by adding an ORDER BY clause to the previous answer
-
+SELECT count(o.order_id), c.contact_name, c.company_name from orders o join customers c on o.customer_id = c.customer_id group by c.contact_name, c.company_name order by count(o.order_id) desc
 
 ### list orders grouped by customer's city showing number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders.
 > This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
-
+SELECT count(o.order_id), c.city from customers c join orders o on o.customer_id = c.customer_id group by c.city order by c.city
 
 ## Data Normalization
 
