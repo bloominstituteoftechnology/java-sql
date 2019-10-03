@@ -94,7 +94,7 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 
 Note: This step does not use PostgreSQL!
 
-Take the following data and normalize it into a 3NF database.
+Take the following data and normalize it into a 3NF database.  You can use the website https://www.tablesgenerator.com/markdown_tables# to help generate Markdown Tables.
 
 | Person Name | Pet Name | Pet Type | Pet Name 2 | Pet Type 2 | Pet Name 3 | Pet Type 3 | Fenced Yard | City Dweller |
 |-------------|----------|----------|------------|------------|------------|------------|-------------|--------------|
