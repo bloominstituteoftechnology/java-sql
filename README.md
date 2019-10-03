@@ -114,7 +114,7 @@ Take the following data and normalize it into a 3NF database.  You can use the w
 
 ## Create Database and Table
 
-### Keep track of the code you write and paste at the end of this document
+### After creating the database, tables, columns, and constraint, generate the script necessary to recreate the database. This script is what you will submit for review. 
 
 - use pgAdmin to create a database, naming it `budget`.
 - add an `accounts` table with the following _schema_:
