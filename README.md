@@ -105,12 +105,7 @@ Take the following data and normalize it into a 3NF database.  You can use the w
 ---
 ## Stretch Goals
 
-### delete all customers that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
-> This is done with a DELETE query
-
-> In the WHERE clause, you can provide another list with an IN keyword this list can be the result of another SELECT query. Write a query to return a list of CustomerIDs that meet the criteria above. Pass that to the IN keyword of the WHERE clause as the list of IDs to be deleted
- 
-> Use a LEFT JOIN to join the Orders table onto the Customers table and check for a NULL value in the OrderID column
+### delete all customers that have no orders. Should delete 2 (or 3 if you haven't deleted the record added) records.
 
 ## Create Database and Table
 
