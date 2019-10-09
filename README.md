@@ -3,7 +3,7 @@
 A student that completes this project shows that they can:
 * Query data from a single table
 * Query data from multiple tables
-* Create a new datadaase using PostgreSQL
+* Create a new database using PostgreSQL
 
 # Introduction
 
