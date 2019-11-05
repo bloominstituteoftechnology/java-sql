@@ -189,9 +189,33 @@ Take the following data and normalize it into a 3NF database.  You can use the w
 
 ### delete all customers that have no orders. Should delete 2 (or 3 if you haven't deleted the record added) records.
 
+```
+DELETE FROM customers 
+WHERE company_name NOT IN
+	(SELECT c.company_name
+	FROM orders o JOIN customers c 
+	ON o.customer_id = c.customer_id)
+```
+
 ## Create Database and Table
 
 ### After creating the database, tables, columns, and constraint, generate the script necessary to recreate the database. This script is what you will submit for review. 
+
+```
+CREATE DATABASE budget
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'C'
+    LC_CTYPE = 'C'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+CREATE TABLE accounts(
+	id int PRIMARY KEY,
+	name varchar(255) UNIQUE
+	budget decimal NOT NULL)
+```
 
 - use pgAdmin to create a database, naming it `budget`.
 - add an `accounts` table with the following _schema_:
