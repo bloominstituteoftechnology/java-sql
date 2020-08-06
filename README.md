@@ -108,7 +108,7 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 ```SQL
     SELECT contact_title
     FROM customers
-    WHERE contact_title LIKE 'M%'
+    WHERE upper(contact_title) LIKE '%MARKET%'
 
 ```
 
@@ -202,41 +202,41 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: Person data
 
-|            |            |            |            |            |            |            |            |            |
+| person_id  | person_name|city_dweller|fenced_yard |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|  1         |jane        |    yes     |     no     |            |            |            |            |
+|  2         |bob         |    no      |     no     |            |            |            |            |
+|  3         |sam         |    no      |     yes    |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pets data
 
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|    pet_id   |   pet_name     |   type      |  person_id  |            |            |            |            |             |
+|------------ |----------------|------------ |------------ |------------|------------|------------|------------|------------|
+|    1        |  ellie         |  DOG        |  1          |            |            |            |            |            |
+|    2        |  joe           |  HORSE      |  2          |            |            |            |            |            |
+|    3        |  ginger        |  DOG        |  3          |            |            |            |            |            |
+|    4        |  tiger         |  CAT        |  1          |            |            |            |            |            |
+|    5        |  miss kitty    |  CAT        |  3          |            |            |            |            |            |
+|    6        |  toby          |  TURTLE     |  1          |            |            |            |            |            |
+|    7        |  bubble        |  FISH       |  3          |            |            |            |            |            |
+
+Table Name: type of pet data
+
+|   pet_id    |  species   |            |            |            |            |            |            |            |
+|-------------|------------|------------|------------|------------|------------|------------|------------|------------|
+|     1       |            |            |            |            |            |            |            |            |
+|     2       |            |            |            |            |            |            |            |            |
+|     3       |            |            |            |            |            |            |            |            |
+|     4       |            |            |            |            |            |            |            |            |
+|     5       |            |            |            |            |            |            |            |            |
+|     6       |            |            |            |            |            |            |            |            |
+|             |            |            |            |            |            |            |            |            |
 
 Table Name:
 
