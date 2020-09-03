@@ -14,7 +14,7 @@ Working with SQL
 
 Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same data we used during the guided project.
 
-* [ ] ***pgAdmin data refresh***
+* [x] ***pgAdmin data refresh***
 
 * Select the northwind database created during the guided project.
 
