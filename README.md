@@ -157,7 +157,7 @@ WHERE customer_id = 'SHIRE'
 
 ```
 
-* [ ] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
+* [x] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
 
   <details><summary>hint</summary>
 
@@ -166,6 +166,12 @@ WHERE customer_id = 'SHIRE'
   </details>
 
 ```SQL
+
+SELECT c.company_name, COUNT(o.customer_id)
+FROM customers c JOIN orders o
+ON o.customer_id = c.customer_id
+GROUP BY c.company_name
+ORDER BY c.company_name
 
 ```
 
