@@ -89,7 +89,7 @@ ORDER BY order_date desc
 
 ```
 
-* [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
+* [x] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
 
   <details><summary>hint</summary>
 
@@ -98,6 +98,10 @@ ORDER BY order_date desc
   </details>
 
 ```SQL
+
+SELECT contact_name
+FROM suppliers
+WHERE length(company_name) > 20
 
 ```
 
