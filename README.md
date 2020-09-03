@@ -122,7 +122,7 @@ WHERE upper(contact_title) LIKE ('%MARKET%')
 
 ```
 
-* [ ] ***add a customer record for***
+* [x] ***add a customer record for***
 * customer id is 'SHIRE'
 * company name is 'The Shire'
 * contact name is 'Bilbo Baggins'
@@ -142,7 +142,7 @@ VALUES ('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111'
 
 ```
 
-* [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
+* [x] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
 
   <details><summary>hint</summary>
 
@@ -150,6 +150,10 @@ VALUES ('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111'
   </details>
 
 ```SQL
+
+UPDATE customers
+SET postal_code = '11122'
+WHERE customer_id = 'SHIRE'
 
 ```
 
