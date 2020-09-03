@@ -29,7 +29,7 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ### Answer the following data queries. Keep track of the SQL you write by pasting it into this document under its appropriate header below in the provided SQL code block. You will be submitting that through the regular fork, change, pull process
 
-* [ ] ***find all customers that live in London. Returns 6 records***
+* [X] ***find all customers that live in London. Returns 6 records***
 
   <details><summary>hint</summary>
 
@@ -37,10 +37,13 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT * 
+FROM customers c
+WHERE c.city = 'London'
 
 ```
 
-* [ ] ***find all customers with postal code 1010. Returns 3 customers***
+* [X] ***find all customers with postal code 1010. Returns 3 customers***
 
   <details><summary>hint</summary>
 
@@ -48,10 +51,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT * 
+FROM customers c
+WHERE c.postal_code = '1010'
 ```
 
-* [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
+* [X] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
 
   <details><summary>hint</summary>
 
@@ -59,10 +64,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT s.supplier_id, s.phone
+FROM suppliers s
+WHERE s.supplier_id = 11
 ```
 
-* [ ] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
+* [X] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
 
   <details><summary>hint</summary>
 
@@ -70,10 +77,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT *
+FROM orders o
+ORDER BY o.order_date desc
 ```
 
-* [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
+* [X] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
 
   <details><summary>hint</summary>
 
@@ -82,6 +91,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM suppliers s
+WHERE length(s.company_name) > 20
 
 ```
 
@@ -95,10 +107,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT c.contact_title
+FROM customers c
+WHERE upper(c.contact_title) LIKE '%MARKET%'
 ```
 
-* [ ] ***add a customer record for***
+* [X] ***add a customer record for***
 * customer id is 'SHIRE'
 * company name is 'The Shire'
 * contact name is 'Bilbo Baggins'
@@ -112,10 +126,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+INSERT INTO customers (customer_id, company_name, contact_name, address, city, postal_code, country)
+	VALUES ( 'SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit Hole', 'Bag End', '111', 'Middle Earth' );
 
 ```
 
-* [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
+* [X] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
 
   <details><summary>hint</summary>
 
@@ -123,6 +139,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+UPDATE customers
+SET postal_code = 11122
+WHERE customers.customer_id = 'SHIRE'
 
 ```
 
@@ -135,10 +154,13 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT COUNT(c.customer_id), c.company_name
+FROM customers c
+INNER JOIN orders o on o.customer_id  = c.customer_id
+GROUP BY c.company_name 
 ```
 
-* [ ] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
+* [X  ] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
 
   <details><summary>hint</summary>
 
@@ -146,7 +168,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT COUNT(c.customer_id), c.contact_name
+FROM customers c
+INNER JOIN orders o on o.customer_id  = c.customer_id
+GROUP BY c.contact_name
+ORDER BY c.count DESC;
 ```
 
 * [ ] ***list orders grouped by customer's city showing the number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders***
@@ -157,6 +183,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT COUNT(c.customer_id), c.city
+FROM customers c
+INNER JOIN orders o on o.customer_id  = c.customer_id
+GROUP BY c.city
+ORDER BY c.count DESC;
 
 ```
 
@@ -177,53 +208,54 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: pet_owner_home_join
 
-|            |            |            |            |            |            |            |            |            |
+|   pet_id    | person_id   |    home_id  |            |            |            |            |            |            |
+|-------------|-------------|-------------|------------|------------|------------|------------|------------|------------|
+|    1        |   1         |    1        |            |            |            |            |            |            |
+|    2        |   2         |    2        |            |            |            |            |            |            |
+|    3        |   3         |    3        |            |            |            |            |            |            |
+|    4        |   1         |    1        |            |            |            |            |            |            |
+|    5        |   3         |    3        |            |            |            |            |            |            |
+|    6        |   3         |    3        |            |            |            |            |            |            |
+|    7        |   1         |    1        |            |            |            |            |            |            |
+
+
+Table Name: owners
+
+|  person_id |person_name |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|     1      |   Jane     |            |            |            |            |            |            |            |
+|     2      |   Bob      |            |            |            |            |            |            |            |
+|     3      |   Sam      |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: homes
 
-|            |            |            |            |            |            |            |            |            |
+|   home_id  |  fenced    |   in_city  |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        |   no       |   yes      |            |            |            |            |            |            |
+|   2        |   no       |   no       |            |            |            |            |            |            |
+|   3        |  yes       |   no       |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
+Table Name: pets
+|  pet_id    |  pet_name  | pet_type   |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|    1       |    Ellie   |  Dog       |            |            |            |            |            |            |
+|    2       |    Joe     |  Horse     |            |            |            |            |            |            |
+|    3       |    Ginger  |  Dog       |            |            |            |            |            |            |
+|    4       |    Tiger   |  Cat       |            |            |            |            |            |            |
+|    5       | Miss Kitty |  Cat       |            |            |            |            |            |            |
+|    6       |   Bubble   |  Fish      |            |            |            |            |            |            |
+|    7       |   Toby     |  Turtle    |            |            |            |            |            |            |
 
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
 
 ---
 
