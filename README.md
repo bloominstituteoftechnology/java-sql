@@ -175,7 +175,7 @@ ORDER BY c.company_name
 
 ```
 
-* [ ] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
+* [x] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
 
   <details><summary>hint</summary>
 
@@ -183,6 +183,12 @@ ORDER BY c.company_name
   </details>
 
 ```SQL
+
+SELECT c.contact_name, COUNT(o.customer_id)
+FROM customers c JOIN orders o
+ON o.customer_id = c.customer_id
+GROUP BY c.contact_name
+ORDER BY 2 DESC
 
 ```
 
