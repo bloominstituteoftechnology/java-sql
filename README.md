@@ -59,7 +59,7 @@ WHERE postal_code = '1010'
 
 ```
 
-* [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
+* [x] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
 
   <details><summary>hint</summary>
 
@@ -67,6 +67,10 @@ WHERE postal_code = '1010'
   </details>
 
 ```SQL
+
+SELECT contact_name, supplier_id, phone
+FROM suppliers
+WHERE supplier_id = '11'
 
 ```
 
