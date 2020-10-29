@@ -37,6 +37,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT customer_id, city
+FROM customers
+WHERE city = 'London'
+
 
 ```
 
@@ -48,6 +52,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT customer_id, postal_code
+FROM customers
+WHERE postal_code = '1010'
+
 
 ```
 
@@ -60,6 +68,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```SQL
 
+SELECT supplier_id, phone
+FROM suppliers
+WHERE supplier_id = '11'
+
+
 ```
 
 * [ ] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
@@ -70,7 +83,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT customer_id, order_date
+FROM orders
+ORDER BY order_date DESC
 ```
 
 * [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
