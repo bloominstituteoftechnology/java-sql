@@ -37,7 +37,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT c.contact_name, c.city
+FROM customers c
+WHERE c.city = 'London'
 ```
 
 * [ ] ***find all customers with postal code 1010. Returns 3 customers***
@@ -48,7 +50,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT c.contact_name, c.postal_code
+FROM customers c
+WHERE c.postal_code = '1010'
 ```
 
 * [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
@@ -59,7 +63,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT s.phone
+FROM suppliers s
+WHERE s.supplier_id = 11
 ```
 
 * [ ] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
@@ -70,7 +76,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT o.order_date
+FROM orders o
+ORDER BY o.order_date DESC
 ```
 
 * [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
@@ -82,7 +90,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT s.company_name
+FROM suppliers s
+WHERE length(s.company_name) > 20
 ```
 
 * [ ] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
@@ -95,7 +105,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT c.contact_title
+FROM customers c
+WHERE UPPER(c.contact_title) LIKE '%MARKET%'
 ```
 
 * [ ] ***add a customer record for***
@@ -112,7 +124,8 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+INSERT INTO customers(customer_id, company_name, contact_name, address, city, postal_code, country)
+VALUES('SHIRE', 'The Shire', 'Bilbo Baggins', 'Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 ```
 
 * [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
@@ -123,7 +136,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+UPDATE customers
+SET postal_code = '11122'
+WHERE contact_name = 'Bilbo Baggins'
 ```
 
 * [ ] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
@@ -135,6 +150,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT c.company_name, Count(o.customer_id)
+FROM customers c JOIN orders o
+ON o.customer_id = c.customer_id
+GROUP BY c.company_name
+ORDER BY c.company_name
 
 ```
 
@@ -146,6 +166,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT c.contact_name, Count(o.customer_id)
+FROM customers c JOIN orders o
+ON o.customer_id = c.customer_id
+GROUP BY c.contact_name
+ORDER BY 2 DESC
 
 ```
 
@@ -157,6 +182,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT c.city, Count(o.customer_id)
+FROM customers c JOIN orders o
+ON o.customer_id = c.customer_id
+GROUP BY c.city
+ORDER BY 2 DESC
 
 ```
 
@@ -177,41 +207,41 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: Persons
 
-|            |            |            |            |            |            |            |            |            |
+|      id    |   persons  |fenced yard |City Dweller|            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|       1    |    Jane    |    0       |       1    |            |            |            |            |            |
+|       2    |     Bob    |    0       |       0    |            |            |            |            |            |
+|       3    |     Sam    |    1       |       0    |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet types
 
-|            |            |            |            |            |            |            |            |            |
+|       id   |   pet type |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|      1     |   dog      |            |            |            |            |            |            |            |
+|      2     |   horse    |            |            |            |            |            |            |            |
+|      3     |   cat      |            |            |            |            |            |            |            |
+|      4     |    turtle  |            |            |            |            |            |            |            |
+|      5     |      fish  |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: pets
 
-|            |            |            |            |            |            |            |            |            |
+|    id      |   owner id |  pet id    |    pet name|            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|      1     |        1   |      1     |   Ellie    |            |            |            |            |            |
+|      2     |       1    |     3      |     Tiger  |            |            |            |            |            |
+|      3     |       1    |    4       |     Toby   |            |            |            |            |            |
+|        5   |      2     |     2      |  Joe       |            |            |            |            |            |
+|      6     |    3       |         1  |    Ginger  |            |            |            |            |            |
+|        7   |     3      |    3       |  Miss Kitty|            |            |            |            |            |
+|    8       |     3      |       5    |   Bubble   |            |            |            |            |            |
 
 Table Name:
 
@@ -232,7 +262,13 @@ Table Name:
 * [ ] ***delete all customers that have no orders. Should delete 2 (or 3 if you haven't deleted the record added) records***
 
 ```SQL
-
+DELETE
+FROM customers
+WHERE customer_id IN
+(SELECT c.customer_id
+	FROM customers c LEFT JOIN orders o
+ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL)
 ```
 
 * [ ] ***Create Database and Table: After creating the database, tables, columns, and constraint, generate the script necessary to recreate the database. This script is what you will submit for review***
