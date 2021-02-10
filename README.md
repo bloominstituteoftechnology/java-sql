@@ -14,7 +14,7 @@ Working with SQL
 
 Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same data we used during the guided project. You can find a copy of the SQL script under the `assets` folder in this repository.
 
-* [ ] ***pgAdmin data refresh***
+* [*] ***pgAdmin data refresh***
 
 * Select the northwind database created during the guided project.
 
