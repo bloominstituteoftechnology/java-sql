@@ -37,7 +37,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+Select city
+From customers
+Where city = 'London'
 ```
 
 * [ ] ***find all customers with postal code 1010. Returns 3 customers***
@@ -48,7 +50,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+Select customers 
+From customers
+Where postal_code ='1010'
 ```
 
 * [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
@@ -59,6 +63,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+Select phone
+From suppliers
+where supplier_id= '11'
 
 ```
 
@@ -70,6 +77,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+
+Select order_date
+From orders
+Order By order_date DESC
 
 ```
 
@@ -83,6 +94,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```SQL
 
+Select company_name
+From suppliers
+Where length(company_name) > 20
+
 ```
 
 * [ ] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
@@ -95,6 +110,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT contact_title
+FROM customers
+WHERE contact_title Like'M%'  
 
 ```
 
@@ -113,6 +131,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```SQL
 
+Insert Into customers(customer_id, company_name, contact_name, address, city, postal_code, country)
+ Values('SHIRE', 'The Shire','Bilbo Baggins','1 Hobbit-Hole','Bag End','111','Middle Earth')
+ 
+
 ```
 
 * [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
@@ -123,6 +145,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+UPDATE CUSTOMERS
+SET POSTAL_CODE = '11122'
+WHERE POSTAL_CODE = '111'
 
 ```
 
@@ -135,6 +160,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+  Select  count(o.customer_id), c.company_name
+  From orders o JOIN customers c on o.customer_id = c.customer_id
+  Group By c.company_name
+
 
 ```
 
@@ -146,7 +175,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+Select count (o.customer_id), c.contact_name
+From orders o JOIN customers c on o.customer_id = c.customer_id
+Group by c.contact_name
+Order by count (o.customer_id) desc
 ```
 
 * [ ] ***list orders grouped by customer's city showing the number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders***
@@ -157,7 +189,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+  Select  count(o.customer_id), c.city
+  From orders o JOIN customers c on o.customer_id = c.customer_id
+  Group By c.city
+  Order By count (o.customer_id) 
 ```
 
 ## Data Normalization
@@ -177,53 +212,42 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: Person
 
-|            |            |            |            |            |            |            |            |            |
+| person_id  |person_name |  toal_pets |city_dweller| fenced_yard|            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
+|     1      |    Jane    |     3      |       yes  |      No    |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
+|     2      |    Bob     |     1      |      No    |       NO   |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|     3      |    Sam     |     3      |      No    |     yes    |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pets Name
 
-|            |            |            |            |            |            |            |            |            |
+|    pet_id  | pet_name   |   type_id  |  person_id |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|      1     |    Ellie   |      1     |     1      |            |            |            |            |            |
+|      2     |    Joe     |      3     |     2      |            |            |            |            |            |
+|      3     |    Ginger  |      1     |     3      |            |            |            |            |            |
+|      4     |    Tiger   |      2     |     1      |            |            |            |            |            |
+|      5     | Miss Kitty |      2     |     3      |            |            |            |            |            |
+|      6     |     Toby   |      5     |     1      |            |            |            |            |            |
+|      7     |     Bubble |      4     |     3      |            |            |            |            |            |
+
+Table Name: Pet Type
+
+|    type_id |     species|            |            |            |            |            |            |            |
+|------------|------------|------------|------------|------------|------------|------------|------2------|------------|
+|       1    |    Dog     |            |            |            |            |            |            |            |
+|       2    |    Cat     |            |            |            |            |            |            |            |
+|       3    |    Horse   |            |            |            |            |            |            |            |
+|       4    |    Fish    |            |            |            |            |            |            |            |
+|       5    |    Turtle  |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
 
 ---
 
@@ -232,6 +256,11 @@ Table Name:
 * [ ] ***delete all customers that have no orders. Should delete 2 (or 3 if you haven't deleted the record added) records***
 
 ```SQL
+
+Delete
+ From orders
+ Where order_date is Null
+ 
 
 ```
 
