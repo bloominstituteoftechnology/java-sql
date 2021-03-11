@@ -123,7 +123,8 @@ WHERE upper(contact_title) LIKE '%MARKET%';
   * This can be done with the INSERT INTO clause
   </details>
 
-```SQL
+```SQL   INSERT INTO customers(customer_id,company_name,contact_name,address,city,postal_code, country)
+		VALUES('SHIRE','THE Shire','Bilbo Baggins','1 Hobbit-Hole','Bag End', 111,'Middle Earth')
 
 ```
 
