@@ -103,7 +103,9 @@ Where LENGTH (company_name) >20
   * Don't forget the wildcard '%' symbols at the beginning and end of your substring to denote it can appear anywhere in the string in question
   * Remember to convert your contact title to all upper case for case insensitive comparing so upper(contact_title)
   </details>
-
+                       SELECT  contact_title
+FROM  customers
+WHERE upper(contact_title) LIKE '%MARKET%';  
 ```SQL
 
 ```
