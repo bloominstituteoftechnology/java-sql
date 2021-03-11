@@ -62,7 +62,9 @@ where postal_code = '1010'
   * This can be done with SELECT and WHERE clauses
   </details>
 
-```SQL
+```SQL SELECT company_name ,phone
+FROM suppliers
+where  supplier_id =11
 
 ```
 
