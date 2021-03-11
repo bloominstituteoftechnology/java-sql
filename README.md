@@ -37,7 +37,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+Select customer_id
+from customers
+where city = 'London'
 ```
 
 * [ ] ***find all customers with postal code 1010. Returns 3 customers***
@@ -47,7 +49,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This can be done with SELECT and WHERE clauses
   </details>
 
-```SQL
+```SQ Select customers
+from customers
+where postal_code = '1010'
 
 ```
 
@@ -58,7 +62,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This can be done with SELECT and WHERE clauses
   </details>
 
-```SQL
+```SQL SELECT company_name ,phone
+FROM suppliers
+where  supplier_id =11
 
 ```
 
@@ -69,7 +75,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This can be done with SELECT, WHERE, and ORDER BY clauses
   </details>
 
-```SQL
+```SQL   Select * 
+FROM orders
+Where order_date = '1998-05-06'
 
 ```
 
@@ -81,7 +89,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * You can use `length(company_name)` to get the length of the name
   </details>
 
-```SQL
+```SQL   SELECT company_name
+From suppliers
+Where LENGTH (company_name) >20
 
 ```
 
@@ -93,7 +103,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * Don't forget the wildcard '%' symbols at the beginning and end of your substring to denote it can appear anywhere in the string in question
   * Remember to convert your contact title to all upper case for case insensitive comparing so upper(contact_title)
   </details>
-
+                       SELECT  contact_title
+FROM  customers
+WHERE upper(contact_title) LIKE '%MARKET%';  
 ```SQL
 
 ```
@@ -111,7 +123,8 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This can be done with the INSERT INTO clause
   </details>
 
-```SQL
+```SQL   INSERT INTO customers(customer_id,company_name,contact_name,address,city,postal_code, country)
+		VALUES('SHIRE','THE Shire','Bilbo Baggins','1 Hobbit-Hole','Bag End', 111,'Middle Earth')
 
 ```
 
@@ -122,7 +135,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This can be done with UPDATE and WHERE clauses
   </details>
 
-```SQL
+```SQL     UPDATE CUSTOMERS
+SET postal_code = 11122
+where customer_id = 'SHIRE'
 
 ```
 
@@ -134,7 +149,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * There is more information about the COUNT clause on [W3 Schools](https://www.w3schools.com/sql/sql_count_avg_sum.asp)
   </details>
 
-```SQL
+```SQL    SELECT c.company_name Customer,  COUNT(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.company_name
 
 ```
 
@@ -144,7 +162,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
   * This can be done by adding an ORDER BY clause to the previous answer and changing the group by field
   </details>
-
+ SELECT c.contact_name contact, count(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.contact_name
+    ORDER BY count desc
 ```SQL
 
 ```
@@ -156,7 +178,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   * This is very similar to the previous two queries, however, it focuses on the City rather than the Customer Names
   </details>
 
-```SQL
+```SQLSELECT c.city city, count(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.city
+    ORDER BY count desc
 
 ```
 
@@ -179,19 +205,28 @@ Below are some empty tables to be used to normalize the database
 
 Table Name:
 
-|            |            |            |            |            |            |            |            |            |
+|   PET ID    |    PET TYPE   |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   DOG         |      1      |            |            |            |            |            |            |            |
+|     HORSE		2
+|CAT            |       3     |            |            |            |            |            |            |
+|    TURTLE        |    4        |            |            |            |            |            |            |            |
+|       FISH     |      5      |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
 Table Name:
 
-|            |            |            |            |            |            |            |            |            |
+|        Pet Type	Pet Name	Pet_type	owner_id	attribute_id				
+	Ellie	1	1	4				
+	Joe	2	2	1				
+	Ginger	1	3	3				
+	Tiger	3	1	4				
+	Ms. Kitty	3	3	3				
+	Toby	4	1	4				
+	Bubble	5	3	3				
+    |            |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
