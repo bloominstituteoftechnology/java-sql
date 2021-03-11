@@ -89,7 +89,9 @@ Where order_date = '1998-05-06'
   * You can use `length(company_name)` to get the length of the name
   </details>
 
-```SQL
+```SQL   SELECT company_name
+From suppliers
+Where LENGTH (company_name) >20
 
 ```
 
