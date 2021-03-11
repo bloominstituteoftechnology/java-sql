@@ -49,7 +49,9 @@ where city = 'London'
   * This can be done with SELECT and WHERE clauses
   </details>
 
-```SQL
+```SQ Select customers
+from customers
+where postal_code = '1010'
 
 ```
 
