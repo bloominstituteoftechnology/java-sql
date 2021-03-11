@@ -162,7 +162,11 @@ where customer_id = 'SHIRE'
 
   * This can be done by adding an ORDER BY clause to the previous answer and changing the group by field
   </details>
-
+ SELECT c.contact_name contact, count(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.contact_name
+    ORDER BY count desc
 ```SQL
 
 ```
@@ -174,7 +178,11 @@ where customer_id = 'SHIRE'
   * This is very similar to the previous two queries, however, it focuses on the City rather than the Customer Names
   </details>
 
-```SQL
+```SQLSELECT c.city city, count(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.city
+    ORDER BY count desc
 
 ```
 
