@@ -204,39 +204,39 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: Person_Table
 
-|            |            |            |            |            |            |            |            |            |
+|  Person_ID | Person_Name| Total_Pets | Fenced_Yard|City_Dweller|            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|     1      |   Jane     |     3      |     No     |    Ye      |            |            |            |            |
+|     2      |   Bob      |     1      |     No     |    No      |            |            |            |            |
+|     3      |   Sam      |     3      |     Yes    |    No      |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet_Table
 
-|            |            |            |            |            |            |            |            |            |
+|    Pet_ID  | Pet_Name   |  Pet_Type  |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        | Ellie      |    1       |            |            |            |            |            |            |
+|   2        | Joe        |    2       |            |            |            |            |            |            |
+|   3        | Ginger     |    1       |            |            |            |            |            |            |
+|   4        | Tiger      |    3       |            |            |            |            |            |            |
+|   5        | Miss Kitty |    3       |            |            |            |            |            |            |
+|   6        | Toby       |    4       |            |            |            |            |            |            |
+|            | Bubble     |    5       |            |            |            |            |            |            |
 
-Table Name:
+Table Name: 
 
-|            |            |            |            |            |            |            |            |            |
+| Species_ID |Species_Name|            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+| 1          |  Dog       |            |            |            |            |            |            |            |
+| 2          |  Horse     |            |            |            |            |            |            |            |
+| 3          |  Cat       |            |            |            |            |            |            |            |
+| 4          |  Turtle    |            |            |            |            |            |            |            |
+| 5          |  Fish      |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
