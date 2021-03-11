@@ -75,7 +75,9 @@ where  supplier_id =11
   * This can be done with SELECT, WHERE, and ORDER BY clauses
   </details>
 
-```SQL
+```SQL   Select * 
+FROM orders
+Where order_date = '1998-05-06'
 
 ```
 
