@@ -149,7 +149,10 @@ where customer_id = 'SHIRE'
   * There is more information about the COUNT clause on [W3 Schools](https://www.w3schools.com/sql/sql_count_avg_sum.asp)
   </details>
 
-```SQL
+```SQL    SELECT c.company_name Customer,  COUNT(*)
+    FROM orders o JOIN customers c
+    ON c.customer_id = o.customer_id
+    GROUP BY c.company_name
 
 ```
 
