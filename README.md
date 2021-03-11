@@ -135,7 +135,9 @@ WHERE upper(contact_title) LIKE '%MARKET%';
   * This can be done with UPDATE and WHERE clauses
   </details>
 
-```SQL
+```SQL     UPDATE CUSTOMERS
+SET postal_code = 11122
+where customer_id = 'SHIRE'
 
 ```
 
