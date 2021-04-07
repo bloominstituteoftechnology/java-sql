@@ -227,15 +227,15 @@ Person Table:
 
 Pet Name Table:
 
-|Pet_id      |Pet_name    |Pet_type     |            |            |            |            |            |            |
+|Pet_id      |Pet_name    |Pet_type    |Owner_id    |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|1           |Ellie       |1           |            |            |            |            |            |            |
-|2           |Joe         |2           |            |            |            |            |            |            |
-|3           |Ginger      |1           |            |            |            |            |            |            |
-|4           |Tiger       |3           |            |            |            |            |            |            |
-|5           |Miss Kitty  |3           |            |            |            |            |            |            |
-|6           |Toby        |4           |            |            |            |            |            |            |
-|7           |Bubble      |5           |            |            |            |            |            |            |
+|1           |Ellie       |1           |1           |            |            |            |            |            |
+|2           |Joe         |2           |2           |            |            |            |            |            |
+|3           |Ginger      |1           |3           |            |            |            |            |            |
+|4           |Tiger       |3           |1           |            |            |            |            |            |
+|5           |Miss Kitty  |3           |3           |            |            |            |            |            |
+|6           |Toby        |4           |1           |            |            |            |            |            |
+|7           |Bubble      |5           |3           |            |            |            |            |            |
 
 Pet Type Table:
 
