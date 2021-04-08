@@ -37,6 +37,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM customers
+WHERE city = 'London';
 
 ```
 
@@ -48,6 +51,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM customers
+WHERE postal_code = '1010'
 
 ```
 
@@ -59,6 +65,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM suppliers
+WHERE supplier_id = '11'
 
 ```
 
@@ -70,6 +79,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM orders
+ORDER BY order_date DESC
 
 ```
 
@@ -82,6 +94,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT *
+FROM suppliers
+WHERE LENGTH(company_name) > 20
 
 ```
 
@@ -95,6 +110,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT * 
+FROM customers 
+WHERE upper(contact_title) like '%MARKET%'
 
 ```
 
@@ -112,6 +130,8 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+INSERT INTO customers(customer_id, company_name, contact_name, address, city, postal_code, country )
+	VALUES('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 
 ```
 
@@ -123,6 +143,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+UPDATE customers
+SET postal_code = '11122'
+WHERE customer_id = 'SHIRE'
+
 
 ```
 
@@ -135,6 +159,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+Select Count(orders.customer_id), customers.company_name
+from orders 
+join customers on orders.customer_id = customers.customer_id
+group by customers.company_name
 
 ```
 
@@ -146,7 +174,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+Select Count(orders.customer_id), customers.contact_name
+from orders 
+join customers on orders.customer_id = customers.customer_id
+group by customers.contact_name
+ORDER BY count(orders.customer_id) DESC
 ```
 
 * [ ] ***list orders grouped by customer's city showing the number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders***
@@ -157,6 +189,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+Select Count(orders.customer_id), customers.city
+from orders 
+join customers on orders.customer_id = customers.customer_id
+group by customers.contact_name
+ORDER BY count(orders.customer_id) DESC
 
 ```
 
@@ -179,11 +216,11 @@ Below are some empty tables to be used to normalize the database
 
 Table Name:
 
-|            |            |            |            |            |            |            |            |            |
+|Owner_id    |Owner_name  |Fenced Yard |City Dweller|            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|1           |Jane        | No         | Yes        |            |            |            |            |            |
+|2           |Bob         | No         | No         |            |            |            |            |            |
+|3           |Sam         | Yes        | No         |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
@@ -191,15 +228,15 @@ Table Name:
 
 Table Name:
 
-|            |            |            |            |            |            |            |            |            |
+|Pet_id      |Owner_id    | Pet Name   | Pet Type   |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|1           |1           | Ellie      | Dog        |            |            |            |            |            |
+|2           |1           | Tiger      | Cat        |            |            |            |            |            |
+|3           |1           | Toby       | Turtle     |            |            |            |            |            |
+|4           |2           | Joe        | Horse      |            |            |            |            |            |
+|5           |3           | Ginger     | Dog        |            |            |            |            |            |
+|6           |3           |            |            |            |            |            |            |            |
+|7           |3           |            |            |            |            |            |            |            |
 
 Table Name:
 
