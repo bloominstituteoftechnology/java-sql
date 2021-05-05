@@ -1,3 +1,86 @@
+SELECT *
+FROM customers c
+WHERE c.city = 'London'
+
+SELECT *
+FROM customers c
+WHERE c.postal_code = '1010'
+
+SELECT phone
+FROM suppliers s
+WHERE s.supplier_id = 11
+
+SELECT *
+FROM orders o
+ORDER BY o.order_date DESC
+
+SELECT *
+FROM suppliers s
+WHERE length(s.company_name) > 20
+
+SELECT *
+FROM customers c
+WHERE upper(c.contact_title) LIKE '%MARKET%'
+
+INSERT INTO customers(customer_id, company_name, contact_name, address, postal_code, country, city)
+	VALUES('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', '111', 'Middle Earth','Bag End')
+
+UPDATE customers
+SET postal_code = '11122'
+WHERE customer_id = 'SHIRE';
+
+SELECT COUNT(o.order_id), c.company_name
+FROM orders o RIGHT JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.company_name
+
+SELECT COUNT(o.order_id), c.company_name
+FROM orders o RIGHT JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.company_name
+ORDER BY COUNT(o.order_id) DESC
+
+SELECT COUNT(o.order_id) AS ordernum, c.city
+FROM orders o RIGHT JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.city
+ORDER BY ordernum DESC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Java SQL
 
 A student that completes this project shows that they can:
